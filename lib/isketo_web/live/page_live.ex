@@ -1,9 +1,7 @@
 defmodule IsketoWeb.PageLive do
   use IsketoWeb, :live_view
 
-  @keto_banned_ingredients Application.get_env(:isketo, IsketoWeb.Endpoint)[
-                             :keto_banned_ingredients
-                           ]
+  @keto_banned_ingredients Application.get_env(:isketo, :keto_banned_ingredients)
 
   @impl true
   def mount(_params, _session, socket) do
@@ -49,8 +47,8 @@ defmodule IsketoWeb.PageLive do
 
   def is_keto(ingredient) do
     case @keto_banned_ingredients
-         |> Enum.find(fn banned_ingredient ->
-           banned_ingredient =~ String.downcase(ingredient)
+         |> Enum.find(fn banned_ingredient_regex ->
+           Regex.match?(banned_ingredient_regex, String.downcase(ingredient))
          end) do
       nil -> true
       _ -> false

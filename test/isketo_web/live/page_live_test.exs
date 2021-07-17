@@ -23,7 +23,15 @@ defmodule IsketoWeb.PageLiveTest do
   end
 
   test "is_keto returns false for banned ingredients" do
-    assert is_keto(["banana"]) == false
+    [
+      "sweet potato",
+      "sweet potatos",
+      "white potato",
+      "banana"
+    ]
+    |> Enum.each(fn ingredient ->
+      assert is_keto(ingredient) == false, ingredient
+    end)
   end
 
   test "we can parse ld+json ingredients" do

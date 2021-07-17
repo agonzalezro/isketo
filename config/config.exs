@@ -13,10 +13,9 @@ config :isketo, IsketoWeb.Endpoint,
   secret_key_base: "UOvXHGhbjJtNPqJHbx8k7WVyO7NYv7jOEYo4HosBv2qXcJY4xukdCzveaXarBFtu",
   render_errors: [view: IsketoWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Isketo.PubSub,
-  live_view: [signing_salt: "Njs4TDD8"],
-  keto_banned_ingredients: File.stream!("config/keto_banned_ingredients.txt")
-  |> Stream.map(&String.trim_trailing/1)
-  |> Enum.to_list()
+  live_view: [signing_salt: "Njs4TDD8"]
+
+import_config "keto_banned_ingredients.exs"
 
 # Configures Elixir's Logger
 config :logger, :console,
