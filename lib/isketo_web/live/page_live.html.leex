@@ -1,0 +1,19 @@
+<section class="phx-hero">
+  <h1>isketo.com</h1>
+  <p>The easiest way to know if a recipe is keto compatible or not</p>
+
+  <form phx-submit="search">
+    <input type="text" name="url" value="<%= @url %>" placeholder="Paste here the URL of the recipe you want to check" autocomplete="off"/>
+    <ul>
+    <li>https://www.delish.com/cooking/recipe-ideas/a30326338/keto-tortilla-chips/</li>
+    <li>https://www.forksoverknives.com/recipes/vegan-desserts/peanut-butter-banana-brownies/</li>
+    </ul>
+    <%= case @result do
+      true -> "YES"
+      false -> "NO"
+      :i_do_not_know -> "I DO NOT KNOW"
+      Null -> ""
+    end %>
+    <button type="submit" phx-disable-with="Checking...">Is keto?</button>
+  </form>
+</section>
