@@ -1,7 +1,8 @@
 use Mix.Config
 
 config :isketo,
-   keto_banned_ingredients: [
+  keto_banned_ingredients:
+    [
       "apples?",
       "bananas?",
       "beers?",
@@ -39,4 +40,5 @@ config :isketo,
       "whisky",
       "wine",
       "yam"
-   ] |> Enum.map(fn s -> ~r/#{s}/iu end)
+    ]
+    |> Enum.map(fn s -> ~r/#{s}/iu end)

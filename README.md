@@ -17,3 +17,14 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+## TODO
+
+- Add Google Analytics
+- Load the url from a query param
+- Add an API
+- Add DB to store searches
+- Top 10 keto recipes
+- Top 10 non-keto recipes
+- Add users
+- Keep historic on the users
