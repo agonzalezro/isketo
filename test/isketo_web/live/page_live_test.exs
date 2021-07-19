@@ -35,13 +35,27 @@ defmodule IsketoWeb.PageLiveTest do
   end
 
   test "we can parse ld+json ingredients" do
-    assert parse_ingredients(fixture("ld")) == [
+    assert parse_ingredients(fixture("ld_1")) == [
              "2 c. <p>shredded mozzarella</p>",
              "1 c. <p>almond flour</p>",
              "1 tsp. <p>kosher salt</p>",
              "1 tsp. <p>garlic powder</p>",
              "1/2 tsp. <p>chili powder</p>",
              "<p>Freshly ground black pepper</p>"
+           ]
+
+    assert parse_ingredients(fixture("ld_2")) == [
+             "1 pound ground beef",
+             "1 onion, chopped",
+             "4 cloves garlic, minced",
+             "1 small green bell pepper, diced",
+             "1 (28 ounce) can diced tomatoes",
+             "1 (16 ounce) can tomato sauce",
+             "1 (6 ounce) can tomato paste",
+             "2 teaspoons dried oregano",
+             "2 teaspoons dried basil",
+             "1 teaspoon salt",
+             "½ teaspoon black pepper"
            ]
   end
 

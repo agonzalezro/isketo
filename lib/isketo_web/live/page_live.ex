@@ -18,21 +18,37 @@ defmodule IsketoWeb.PageLive do
     {:noreply, socket |> assign(result: html |> parse_ingredients |> is_keto, url: url)}
   end
 
+  defp parse_ld(document) do
+    case Floki.find(document, "script[type='application/ld+json']")
+         |> List.first() do
+      {_, _, [ld | _]} ->
+        case ld |> Jason.decode!() do
+          lds when is_list(lds) ->
+            lds
+            |> Enum.map(fn ld -> ld |> Map.get("recipeIngredient") end)
+            |> Enum.reject(&is_nil/1)
+            |> List.flatten()
+
+          ld ->
+            ld |> Map.get("recipeIngredient")
+        end
+
+      _ ->
+        nil
+    end
+  end
+
+  defp parse_itemprop(document) do
+    # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
+    document
+    |> Floki.find("span[itemprop='recipeIngredient']")
+    |> Enum.map(fn {_, _, [ingredient | _]} -> ingredient end)
+  end
+
   def parse_ingredients(html) do
     document = Floki.parse_document!(html)
 
-    case Floki.find(document, "script[type='application/ld+json']")
-         |> List.first() do
-      nil ->
-        # It uses itemprop(s) instead
-        # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
-        document
-        |> Floki.find("span[itemprop='recipeIngredient']")
-        |> Enum.map(fn {_, _, [ingredient | _]} -> ingredient end)
-
-      {_, _, [ld | _]} ->
-        ld |> Jason.decode!() |> Map.get("recipeIngredient")
-    end
+    parse_ld(document) || parse_itemprop(document)
   end
 
   def is_keto([]) do
