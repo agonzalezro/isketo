@@ -1,47 +1,64 @@
-<h1
-  class="bg-gradient-to-r from-green-300 to-green-800 text-transparent bg-clip-text
-         text-6xl font-bold text-center
-         pt-20"
->
-  isketo.com
-</h1>
-
-<p class="text-2xl text-center pt-10">
-  <span class="text-4xl pr-2">🥦</span> The easiest way to know if a recipe is
-  compatible with your <strong>keto</strong> diet!
-</p>
-
-<form phx-submit="search" class="pt-10 w-full pl-3 pr-3 grid grid-cols-3 gap-4">
-  <div class="col-span-3">
-    <input
-      class="outline-none border-2 rounded-xl center text-xl p-3 w-full"
-      type="url"
-      name="url"
-      value="<%= @url %>"
-      placeholder="Paste here the URL of the recipe"
-      autocomplete="off"
-    />
+<div class="flex flex-row pt-20">
+  <div class="flex-1"></div>
+  <div class="flex-initial">
+    <h1
+      class="bg-gradient-to-r from-green-300 to-green-800 text-transparent bg-clip-text text-6xl font-bold text-center"
+    >
+      isketo.com
+    </h1>
   </div>
+  <div class="flex-1"></div>
+</div>
 
-  <div class="col-span-2 text-xl pl-1">
-    <div class="pt-4 font-bold">
-      <%= case @result do
+<div class="flex flex-row pt-10 items-center">
+  <div class="flex-initial w-1/12 md:w-1/6"></div>
+  <div class="flex-initial text-right text-6xl pr-4">🥦</div>
+  <div class="flex-1 text-2xl">
+    The easiest way to know if a recipe is compatible with your
+    <strong>keto</strong> diet!
+  </div>
+  <div class="flex-initial w-1/12 md:w-1/6"></div>
+</div>
+
+<form phx-submit="search" class="flex flex-row pt-10">
+  <div class="flex-initial w-1/12"></div>
+  <input
+    class="flex-1 outline-none border-t-2 border-l-2 border-b-2 center text-xl p-4"
+    type="url"
+    name="url"
+    value="<%= @url %>"
+    placeholder="Paste here the URL of the recipe"
+    autocomplete="off"
+  />
+  <button
+    class="flex-initial outline-none shadow bg-gradient-to-br from-green-300 to-green-500 text-white p-5"
+    type="submit"
+    phx-disable-with="Checking..."
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 -mt-1 hidden sm:inline-block"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+    Check
+  </button>
+  <div class="flex-initial w-1/12"></div>
+</form>
+
+<p class="pt-10 text-center font-bold text-2xl">
+  <%= case @result do
         true -> "It is Keto! 🎉"
         false -> "No, don't eat it! 🤢"
         :i_do_not_know -> "Depends 🤷🏽‍♀️"
         Null -> ""
       end %>
-    </div>
-  </div>
-
-  <div class="w-full pl-1">
-    <button
-      class="outline-none shadow bg-gradient-to-br from-green-300 to-green-500 text-white rounded-xl
-      p-5"
-      type="submit"
-      phx-disable-with="Checking..."
-    >
-      🔍 Check
-    </button>
-  </div>
-</form>
+</p>
