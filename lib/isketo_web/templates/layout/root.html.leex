@@ -8,6 +8,15 @@
     <%= live_title_tag assigns[:page_title] || "isketo.com", suffix: "" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9S4MRS4VJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z9S4MRS4VJ');
+    </script>
   </head>
   <body class="bg-gradient-to-br from-white to-gray-100 h-screen">
     <%= @inner_content %>
