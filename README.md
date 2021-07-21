@@ -20,11 +20,12 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## TODO
 
-- Add Google Analytics
-- Load the url from a query param
-- Add an API
-- Add DB to store searches
-- Top 10 keto recipes
-- Top 10 non-keto recipes
-- Add users
-- Keep historic on the users
+- [x] Add Google Analytics
+- [ ] Add form to report false positive/negatives
+- [ ] Load the url from a query param
+- [ ] Add an API
+- [ ] Add DB to store searches
+- [ ] Top 10 keto recipes
+- [ ] Top 10 non-keto recipes
+- [ ] Add users
+- [ ] Keep historic on the users
