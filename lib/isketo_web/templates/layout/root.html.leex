@@ -7,6 +7,9 @@
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "isketo.com", suffix: "" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn6WmPC90ZXh0Pjwvc3ZnPgo=">
+
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9S4MRS4VJ"></script>
