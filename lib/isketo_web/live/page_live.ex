@@ -39,7 +39,6 @@ defmodule IsketoWeb.PageLive do
   end
 
   defp parse_itemprop(document) do
-    # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
     document
     |> Floki.find("span[itemprop='recipeIngredient']")
     |> Enum.map(fn {_, _, [ingredient | _]} -> ingredient end)
@@ -48,6 +47,7 @@ defmodule IsketoWeb.PageLive do
   def parse_ingredients(html) do
     document = Floki.parse_document!(html)
 
+    # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
     parse_ld(document) || parse_itemprop(document)
   end
 
