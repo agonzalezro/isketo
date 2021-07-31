@@ -8,3 +8,5 @@ config :isketo, IsketoWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :isketo, :scraper_http_adapter, Isketo.Scraper.Http.Mock
