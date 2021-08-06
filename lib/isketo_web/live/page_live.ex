@@ -33,9 +33,8 @@ defmodule IsketoWeb.PageLive do
 
   defp check_url(url) do
     case ingredients(url) do
-      nil -> :i_do_not_know
-      [] -> :i_do_not_know
-      ingredients -> if are_keto(ingredients), do: :yes, else: :no
+      {:ok, ingredients} -> if are_keto(ingredients), do: :yes, else: :no
+      {:error, _} -> :i_do_not_know
     end
   end
 end

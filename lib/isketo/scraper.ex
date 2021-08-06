@@ -1,26 +1,32 @@
 defmodule Isketo.Scraper.Http do
-  @callback get!(url :: String.t(), headers :: list, follow_redirect :: Boolean.t()) :: String.t()
+  @callback get(url :: String.t(), headers :: list, follow_redirect :: Boolean.t()) ::
+              {Boolean.t(), String.t()}
 end
 
 defmodule Isketo.Scraper.Http.Client do
-  def get!(url, headers, follow_redirect), do: HTTPoison.get!(url, headers, follow_redirect)
+  def get(url, headers, follow_redirect), do: HTTPoison.get(url, headers, follow_redirect)
 end
 
 defmodule Isketo.Scraper do
   @http_client Application.get_env(:isketo, :scraper_http_adapter)
 
   def ingredients(url) do
-    %HTTPoison.Response{
-      status_code: 200,
-      body: html
-    } = @http_client.get!(url, [], follow_redirect: true)
+    case @http_client.get(url, [], follow_redirect: true) do
+      {:ok,
+       %HTTPoison.Response{
+         status_code: 200,
+         body: html
+       }} ->
+        document = Floki.parse_document!(html)
+        # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
+        case parse_itemprop(document) || parse_ld(document) do
+          nil -> {:error, []}
+          ingredients -> {:ok, ingredients}
+        end
 
-    document = Floki.parse_document!(html)
-
-    # TODO: cover the 20% -> https://www.benawad.com/scraping-recipe-websites/
-    parse_itemprop(document) ||
-      parse_ld(document) ||
-      []
+      _ ->
+        {:error, nil}
+    end
   end
 
   defp parse_ld(document) do
