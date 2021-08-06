@@ -22,7 +22,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 - [x] Add Google Analytics
 - [x] Add form to report false positive/negatives
-- [ ] Load the url from a query param
+- [x] Load the url from a query param
 - [ ] Add an API
 - [ ] Add DB to store searches
 - [ ] Top 10 keto recipes

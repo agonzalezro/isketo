@@ -56,6 +56,9 @@
 
 <p class="pt-10 text-center font-bold text-2xl">
   <%= case @result do
+        :loading ->
+          "Loading..."
+
         :yes ->
           "It is Keto! 🎉"
 
