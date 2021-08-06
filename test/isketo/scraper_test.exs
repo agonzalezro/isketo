@@ -1,4 +1,4 @@
-defmodule IsketoWeb.PageLiveTest do
+defmodule IsketoWeb.ScraperTest do
   use ExUnit.Case
 
   import Mox
