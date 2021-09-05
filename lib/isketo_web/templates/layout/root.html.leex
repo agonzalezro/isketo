@@ -28,9 +28,5 @@
   </head>
   <body class="bg-gradient-to-br from-white to-gray-100 h-screen">
     <%= @inner_content %>
-
-    <%= if Application.get_env(:isketo, :cookiebot)[:enabled] do %>
-      <script id="CookieDeclaration" src="https://consent.cookiebot.com/<%= Application.get_env(:isketo, :cookiebot)[:id] %>/cd.js" type="text/javascript" async></script>
-    <% end %>
   </body>
 </html>
