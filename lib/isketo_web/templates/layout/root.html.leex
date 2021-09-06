@@ -23,7 +23,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-Z9S4MRS4VJ');
+      gtag('config', '<%= Application.get_env(:isketo, :ga)[:id] %>');
     </script>
   </head>
   <body class="bg-gradient-to-br from-white to-gray-100 h-screen">

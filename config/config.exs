@@ -31,6 +31,8 @@ config :isketo, :cookiebot,
   enabled: false,
   id: "1105dd25-7423-42cf-9362-3d2b9ca4a80b"
 
+config :isketo, :ga, id: "G-Z9S4MRS4VJ"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
