@@ -29,3 +29,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - [ ] Top 10 non-keto recipes
 - [ ] Add users
 - [ ] Keep historic on the users
+- [ ] Telegram bot

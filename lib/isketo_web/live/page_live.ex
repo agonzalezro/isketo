@@ -9,7 +9,7 @@ defmodule IsketoWeb.PageLive do
     {:ok,
      case connected?(socket) do
        false ->
-         assign(socket, result: :loading)
+         assign(socket, result: [:loading, nil])
 
        true ->
          assign(socket, result: check_url(url))
@@ -18,7 +18,7 @@ defmodule IsketoWeb.PageLive do
   end
 
   @impl true
-  def mount(_params, _session, socket), do: {:ok, assign(socket, url: "", result: Null)}
+  def mount(_params, _session, socket), do: {:ok, assign(socket, url: "", result: [nil, nil])}
 
   @impl true
   def handle_params(_, _, socket), do: {:noreply, socket}
@@ -33,8 +33,16 @@ defmodule IsketoWeb.PageLive do
 
   defp check_url(url) do
     case ingredients(url) do
-      {:ok, ingredients} -> if are_keto(ingredients), do: :yes, else: :no
-      {:error, _} -> :i_do_not_know
+      {:ok, ingredients} ->
+        [is_a_keto_recipe, banned_ingredients] = are_keto(ingredients)
+
+        [
+          if(is_a_keto_recipe, do: :yes, else: :no),
+          banned_ingredients
+        ]
+
+      {:error, _} ->
+        [:i_do_not_know, nil]
     end
   end
 end
